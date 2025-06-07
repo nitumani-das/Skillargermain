@@ -113,7 +113,7 @@ export default function CourseSlider() {
 
         <div
           ref={catRef}
-          className="flex space-x-3 overflow-x-auto px-10 md:px-12 no-scrollbar"
+          className="flex space-x-3 overflow-x-auto px-10 md:px-12 scrollbar-hide"
         >
           {categories.map((cat) => (
             <button
@@ -141,7 +141,7 @@ export default function CourseSlider() {
       {/* Course Cards */}
       <div className="relative">
         <button
-          className="absolute left-0 z-10 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hidden md:block"
+          className="absolute left-0 z-10 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hidden md:block ml-2"
           onClick={() => scroll(courseRef, "left")}
         >
           <ChevronLeft />
@@ -149,12 +149,13 @@ export default function CourseSlider() {
 
         <div
           ref={courseRef}
-          className="flex space-x-6 overflow-x-auto px-4 no-scrollbar"
+          className="flex space-x-6 overflow-x-auto px-4 scrollbar-hide"
+          style={{ scrollBehavior: "smooth" }}
         >
           {(courses[selectedCategory] || []).map((course, idx) => (
             <div
               key={idx}
-              className="min-w-[260px] max-w-xs bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex-shrink-0 border border-gray-100 relative"
+              className="min-w-[250px] max-w-xs bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex-shrink-0 relative"
             >
               {/* Tag */}
               <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow">
@@ -185,7 +186,7 @@ export default function CourseSlider() {
         </div>
 
         <button
-          className="absolute right-0 z-10 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hidden md:block"
+          className="absolute right-0 z-10 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hidden md:block mr-2"
           onClick={() => scroll(courseRef, "right")}
         >
           <ChevronRight />
