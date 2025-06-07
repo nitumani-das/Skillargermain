@@ -5,7 +5,7 @@ import AppRoutes from "./routes/approutes";
 
 const App = () => {
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100 transition-colors duration-300">
+    <div>
       <BrowserRouter>
         <Navbar />
         <AppRoutes />
