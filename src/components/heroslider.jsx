@@ -33,19 +33,19 @@ export default function Slider() {
   const [current, setCurrent] = useState(0);
 
   const prevSlide = () => {
-    setCurrent((current - 1 + slides.length) % slides.length);
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const nextSlide = () => {
-    setCurrent((current + 1) % slides.length);
+    setCurrent((prev) => (prev + 1) % slides.length);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      setCurrent((prev) => (prev + 1) % slides.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [current]);
+  }, []); // ✅ Only run once on mount
 
   return (
     <div className="relative w-full h-[320px] sm:h-[400px] md:h-[480px] lg:h-[500px] overflow-hidden">
@@ -56,12 +56,12 @@ export default function Slider() {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 z-10"></div>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
       {/* Text Card */}
-      <div className="absolute z-20 inset-0 flex justify-center md:justify-start items-center px-4">
-        <div className="bg-black/60 backdrop-blur-md text-white text-center md:text-left max-w-xl w-[90%] md:w-auto p-4 md:p-6 rounded-xl shadow-lg mx-auto md:ml-16">
+      <div className="absolute z-20 inset-0 flex flex-col items-center justify-center md:items-start md:justify-center px-4 text-white">
+        <div className="bg-black/60 backdrop-blur-md text-center md:text-left max-w-xl w-[90%] md:w-auto p-4 md:p-6 rounded-xl shadow-lg mx-auto md:ml-16">
           <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-4 leading-tight">
             {slides[current].title}
           </h2>
@@ -75,19 +75,20 @@ export default function Slider() {
       </div>
 
       {/* Navigation Arrows */}
+     {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute z-30 top-1/2 left-4 transform -translate-y-1/2 bg-white/90 hover:bg-white p-1.5 sm:p-2 rounded-full shadow-md"
+        className="absolute z-20 top-1/2 left-4 transform -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md"
         aria-label="Previous Slide"
       >
-        <ChevronLeft className="text-gray-900 w-5 h-5 sm:w-6 sm:h-6" />
+        <ChevronLeft className="text-gray-900 w-4 h-4 sm:w-5 sm:h-5" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute z-30 top-1/2 right-4 transform -translate-y-1/2 bg-white/90 hover:bg-white p-1.5 sm:p-2 rounded-full shadow-md"
+        className="absolute z-20 top-1/2 right-4 transform -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md"
         aria-label="Next Slide"
       >
-        <ChevronRight className="text-gray-900 w-5 h-5 sm:w-6 sm:h-6" />
+        <ChevronRight className="text-gray-900 w-4 h-4 sm:w-5 sm:h-5" />
       </button>
     </div>
   );

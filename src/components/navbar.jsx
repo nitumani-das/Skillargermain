@@ -1,34 +1,36 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes, FaSearch, FaUserCircle, FaShoppingCart } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaSearch,
+  FaUserCircle,
+  FaShoppingCart,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-// Dummy user for demo
 const dummyUser = {
   name: "Shreenibash",
-  profilePhoto: "https://i.pravatar.cc/300?img=1", // sample avatar
+  profilePhoto: "https://i.pravatar.cc/300?img=1",
 };
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Toggle true/false to test
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleSearchClick = () => {
-    alert("Search clicked! Add your logic here.");
+    alert("Search clicked!");
   };
 
   return (
     <nav className="bg-white shadow-md fixed w-full z-30 top-0 left-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 w-full gap-6">
-
           {/* Left: Logo + Search */}
           <div className="flex items-center gap-4 flex-grow">
-
-            {/* Hamburger for mobile */}
             <div
               className="md:hidden cursor-pointer text-gray-700 text-2xl"
               onClick={toggleMenu}
@@ -36,7 +38,6 @@ const Navbar = () => {
               {isOpen ? <FaTimes /> : <FaBars />}
             </div>
 
-            {/* Logo */}
             <a href="/" className="flex items-center">
               <img
                 src={logo}
@@ -45,7 +46,6 @@ const Navbar = () => {
               />
             </a>
 
-            {/* Search Bar */}
             <div className="hidden md:block w-full max-w-md">
               <div className="relative">
                 <input
@@ -63,9 +63,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Right: Menu + Auth + Cart */}
+          {/* Right: Auth + Cart */}
           <div className="hidden md:flex items-center gap-6 text-gray-700 font-medium">
-
             <a href="#" className="hover:text-blue-600">Categories</a>
             <a href="#" className="hover:text-blue-600">My Courses</a>
             <a href="#" className="hover:text-blue-600">About</a>
@@ -106,9 +105,24 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Overlay for mobile */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-md px-4 pt-2 pb-4 space-y-2 font-medium text-gray-700">
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-[998] md:hidden"
+          onClick={toggleMenu}
+        ></div>
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-white z-[999] shadow-md transform transition-transform duration-300 ease-in-out md:hidden ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="px-4 pt-5 pb-4 space-y-2 font-medium text-gray-700">
+          <button onClick={toggleMenu} className="text-2xl mb-4 text-gray-700">
+            <FaTimes />
+          </button>
           <a href="#" className="block hover:text-blue-600">Categories</a>
           <a href="#" className="block hover:text-blue-600">My Courses</a>
           <a href="#" className="block hover:text-blue-600">About</a>
@@ -128,13 +142,19 @@ const Navbar = () => {
             <div className="flex flex-col space-y-2 pt-2">
               <button
                 className="w-full border border-blue-500 text-blue-600 rounded-full py-1 hover:bg-blue-50"
-                onClick={() => navigate("/login")}
+                onClick={() => {
+                  toggleMenu();
+                  navigate("/login");
+                }}
               >
                 Login
               </button>
               <button
                 className="w-full bg-blue-600 text-white rounded-full py-1 hover:bg-blue-700"
-                onClick={() => navigate("/signup")}
+                onClick={() => {
+                  toggleMenu();
+                  navigate("/signup");
+                }}
               >
                 Signup
               </button>
@@ -148,7 +168,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-      )}
+      </div>
     </nav>
   );
 };

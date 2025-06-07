@@ -39,8 +39,6 @@ const HomePage = () => {
       <Trandingskill/>
     </div>
 
-    
-
       <div class ="pt-8">
         <TestimonialSection />
       </div>
