@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  FaBars,
-  FaTimes,
-  FaSearch,
-  FaUserCircle,
-  FaShoppingCart,
-} from "react-icons/fa";
+import {FaBars,FaTimes,FaSearch,FaUserCircle,FaShoppingCart,} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -16,7 +10,7 @@ const dummyUser = {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);

@@ -14,6 +14,7 @@ import Learninggoal from "../components/learningGoals";
 import TopFooter from "../components/topfooter";
 import Trandingskill from "../components/trandingskill";
 import CourseSlider from "../components/courseslider";
+import FAQSection from "../components/featuredcomponent/faq";
 
 const HomePage = () => {
   return (
@@ -50,6 +51,10 @@ const HomePage = () => {
       <div className="pt-8">
 
         <Learninggoal/>
+      </div>
+
+      <div className="pt-8">
+        <FAQSection/>
       </div>
       
       <div className="pt-8">
