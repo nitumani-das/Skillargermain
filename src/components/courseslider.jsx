@@ -97,7 +97,7 @@ export default function CourseSlider() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-4 py-10 pt-2">
       <h2 className="text-3xl font-bold text-center mb-10">
         All the skills you need in one place
       </h2>
