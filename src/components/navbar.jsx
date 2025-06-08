@@ -10,7 +10,7 @@ const dummyUser = {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
